@@ -6,9 +6,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.Objects;
+
+// Entity - Declares a Java class as your table for your database
 @Entity
 public class SoftwareEngineer {
+    /* @ID - An identifier for your database to go based on when tracking data values
+    (Ex: Software Engineers in this case) */
     @Id
+    // @Generateed Value - Automatically inputs the values to you ID
+    // (strategy = GenerationType.Identity) - Is the strategy of how you ID numbers are to be set
+    // In this case its in numerical order
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;

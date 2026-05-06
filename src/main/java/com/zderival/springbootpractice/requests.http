@@ -1,0 +1,95 @@
+// requests.http is a file used by IDEs to send Hyper Text Transfer Protocol (HTTP) requests
+// to a server for testing APIs.
+
+// POST - Create Data
+// GET - Retrieve Data
+// PUT - Update Data
+// DELETE - Delete Data
+// - CRUD
+
+// "###" separates individual HTTP requests in the file
+
+### GET request to example server
+GET http://localhost:8080
+// This sends an HTTP GET request to the Spring Boot application running locally.
+// The URL includes:
+// - localhost: the local machine (your computer)
+// - 8080: the port where the server is running
+
+###
+// Ask the backend for all software engineers stored in the database
+GET http://localhost:8080/api/v1/software-engineers
+// The URL continues by specifying the endpoint (path) that maps to a controller method in Spring Boot.
+// In this case, "/api/v1/software-engineers" is handled by SoftwareEngineerController,
+// which returns a list of all SoftwareEngineer records from the database.
+
+###
+GET http://localhost:8080/api/v1/software-engineers/99
+// Same concept as the request above. 99 represents the ID of the desired Software Engineer that
+// is being requested
+
+###
+// This request is creating a SoftwareEngineer inside the "SoftwareEngineer" database with the
+// JSON body below
+
+POST http://localhost:8080/api/v1/software-engineers
+Content-Type: application/json
+// The JSON body gives attributes to the values of a SoftwareEngineer object. In this example
+// A Software Engineer with the name, Sam, and has a techStack of: Python, Java, JavaScript
+// is being entered into the database
+
+{
+  "name": "Sam",
+  "techStack": "Python, Java, JavaScript"
+}
+
+###
+// This request deletes a SoftwareEngineer with an ID of 1
+
+DELETE http://localhost:8080/api/v1/software-engineers/1
+
+###
+// This request is updating the information of a SoftwareEngineer with a ID of 2
+// The updated information is made in the JSON body
+
+PUT http://localhost:8080/api/v1/software-engineers/2
+Content-Type: application/json
+// Inside the database of a SoftwareEngineer that had an ID of 2, their information is changed
+// to the values below
+
+{
+  "name": "James Updated",
+  "techStack": "React, Node"
+}
+###
+// This request maps to the AuthController in the project. /auth maps to the Controller
+// /register is the endpoint it maps to inside of AuthController
+
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+//These are the credtials that are being used to register into a program.
+
+{
+  "username": "zach",
+  "password": "Godisgood1"
+}
+
+###
+// Same concept as the request above. /login is the endpoint being mapped inside of AuthController
+
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+// Credentials used to login to a program.
+
+{
+  "username": "zach",
+  "password": "Godisgood1"
+}
+
+###
+// When logging into a program, a token is given to you that authorizes what you can and can't
+// do inside the program.
+
+GET http://localhost:8080/api/v1/software-engineers
+// The token proves the user is authenticated and allows access to protected endpoints.
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6YWNoIiwiaWF0IjoxNzc4MDI5MjQ1LCJleHAiOjE3NzgxMTU2NDV9.lh_71JnDTG0jsTDxNJzodqdeYxk4MUfd-fvJ7O41uug
