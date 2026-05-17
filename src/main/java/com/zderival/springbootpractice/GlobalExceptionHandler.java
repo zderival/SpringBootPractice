@@ -19,7 +19,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(SoftwareEngineerNotFoundException.class)
     // The method converts a Java exception into an HTTP response that Spring sends back to the client.
-
     public ResponseEntity<String> handleNotFoundException(SoftwareEngineerNotFoundException e){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
